@@ -1,0 +1,5 @@
+---
+rbenv_root: ~/.rbenv
+rbenv_default_ruby: 2.5.1
+rbenv_rubies:
+  - version: 2.5.1

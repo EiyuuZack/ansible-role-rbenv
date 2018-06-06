@@ -1,0 +1,33 @@
+---
+- name: Ensure rbenv is installed
+  homebrew:
+    name: rbenv
+    state: present
+
+- name: Ensure rbenv-default-gems is installed
+  homebrew:
+    name: rbenv-default-gems
+    state: present
+
+- name: 'Ensure {{ rbenv_root }} directory is created'
+  file:
+    path: '{{ rbenv_root }}'
+    state: directory
+    mode: 0755
+
+- name: Ensure rbenv is added to profile system-wide
+  blockinfile:
+    path: /etc/profile
+    block: "{{ lookup('template', 'rbenv.sh.j2') }}"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK -- RBENV"
+  become: yes
+
+- name: Ensure default-gems file is copied
+  copy:
+    src: default-gems
+    dest: '{{ rbenv_root }}/default-gems'
+
+- name: Ensure gemrc file is copied
+  copy:
+    src: gemrc
+    dest: ~/.gemrc

@@ -1,0 +1,15 @@
+---
+- name: Ensure selected ruby versions are installed
+  shell: $SHELL -lc 'rbenv install {{ item.version|quote }}' # when using shell always use quote filter to avoid injection
+  args:
+    creates: '{{ rbenv_root }}/versions/{{ item.version }}/bin/ruby'
+  with_items: '{{ rbenv_rubies }}'
+  environment:
+    RUBY_CONFIGURE_OPTS: '--disable-install-doc'
+    #RBENV_ROOT: "{{ ansible_env.HOME }}/.rbenv" # required to trigger default gem install
+
+- name: 'Ensure ruby {{ rbenv_default_ruby }} is default'
+  shell: $SHELL -lc 'rbenv global {{ rbenv_default_ruby|quote }}'
+
+- name: Ensure shims are updated
+  shell: $SHELL -lc 'rbenv rehash'
