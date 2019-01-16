@@ -1,4 +1,5 @@
 if [ -d "$HOME/.rbenv" ]; then
+  export LANG=en_US.UTF-8 # required by cocoapods
   export RBENV_ROOT=$HOME/.rbenv
   eval "$(rbenv init --no-rehash -)"
   (rbenv rehash &) 2> /dev/null
