@@ -1,5 +1,5 @@
 ---
 rbenv_root: ~/.rbenv
-rbenv_default_ruby: 3.1.2
+rbenv_default_ruby: 3.1.4
 rbenv_rubies:
-  - version: 3.1.2
+  - version: 3.1.4
