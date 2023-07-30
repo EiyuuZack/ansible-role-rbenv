@@ -15,12 +15,11 @@
     state: directory
     mode: 0755
 
-- name: Ensure rbenv is added to profile system-wide
+- name: Ensure rbenv is added to user's profile
   blockinfile:
-    path: /etc/zprofile
+    path: "{{ lookup('ansible.builtin.env', 'HOME') }}/.zprofile"
     block: "{{ lookup('template', 'rbenv.sh.j2') }}"
     marker: "# {mark} ANSIBLE MANAGED BLOCK -- RBENV"
-  become: yes
 
 - name: Ensure default-gems file is copied
   copy:
