@@ -1,6 +1,5 @@
 if [ -d "$HOME/.rbenv" ]; then
   export LANG=en_US.UTF-8 # required by cocoapods
-  export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)" # see https://github.com/Homebrew/homebrew-core/blob/master/Formula/ruby-build.rb#L21
   export RBENV_ROOT=$HOME/.rbenv
   eval "$(rbenv init --no-rehash -)"
   (rbenv rehash &) 2> /dev/null
