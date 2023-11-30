@@ -20,6 +20,7 @@
     path: "{{ ansible_env.HOME }}/.zprofile"
     block: "{{ lookup('template', 'rbenv.sh.j2') }}"
     marker: "# {mark} ANSIBLE MANAGED BLOCK -- RBENV"
+    create: true
 
 - name: Ensure default-gems file is copied
   copy:
